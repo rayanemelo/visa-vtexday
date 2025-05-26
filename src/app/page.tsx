@@ -1,7 +1,8 @@
-import Image from "next/image";
+import Header from "./components/header";
+import { Shelf, ShelfProps } from "./components/shelf";
 
 export default function Home() {
-  const brindes = [
+  const brindes: ShelfProps[] = [
     {
       id: 1,
       name: "Self Ring Light",
@@ -68,50 +69,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="p-4 space-y-8">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {brindes.map((product) => (
-          <a
-            key={product.id}
-            className="flex flex-col items-center text-center gap-2 hover:underline hover:underline-offset-4"
-            href={product.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={200}
-              height={200}
-              className="rounded-lg max-w-[200px] h-auto object-contain"
-            />
-            <span className="text-sm font-medium">{product.name}</span>
-          </a>
-        ))}
+    <>
+      <Header />
+      <div className="p-4 space-y-8">
+        <Shelf items={brindes} />
+        <div className="w-full h-px bg-gray-300" />
+        <Shelf items={produtos} />
       </div>
+    </>
 
-      <div className="w-full h-px bg-gray-300" />
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {produtos.map((product) => (
-          <a
-            key={product.id}
-            className="flex flex-col items-center text-center gap-2 hover:underline hover:underline-offset-4"
-            href={product.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={200}
-              height={200}
-              className="rounded-lg max-w-[200px] h-auto object-contain"
-            />
-            <span className="text-sm font-medium">{product.name}</span>
-          </a>
-        ))}
-      </div>
-    </div>
   );
 }
